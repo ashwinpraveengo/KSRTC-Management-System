@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# KSRTC Bus Service Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The KSRTC Bus Service Management System is designed to streamline the bus booking process and manage detailed records of bus schedules, routes, passengers, and staff. This system centralizes data for efficient management of bus services and provides a user-friendly interface for passengers, staff, and administrative users.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## System Overview
 
-### `npm start`
+This system includes:
+- **Bus Information Management**: Centralized details for each bus, such as bus number, type, seating capacity, and ownership.
+- **Dynamic Route Scheduling**: Flexibility for routes that can vary by day or season, with adaptable sources, destinations, and stops.
+- **Passenger and Ticketing Management**: Real-time seat availability and ticket booking records, with the option for advance and on-the-spot bookings.
+- **Staff Assignments and Logs**: Detailed logs for drivers, conductors, and KSRTC administrators.
+- **Basic Financial Transactions**: Fare records for each booking.
+- **Maintenance Tracking**: Basic status tracking of bus maintenance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Modelling Scope
 
-### `npm test`
+**Included Components**:
+- Bus Information: Stores bus details, including bus number, type, seat capacity, and ownership.
+- Dynamic Route Schedules: Support for flexible scheduling with different sources, destinations, and intermediate stops.
+- Passenger and Ticketing Information: Booking records, seat availability tracking, and ticket history.
+- Real-Time Seat Availability Tracking: Automatically updates seat availability in real-time.
+- Staff and Admin Records: Logs for drivers, conductors, and KSRTC administrators.
+- Financial Transactions: Basic fare records without comprehensive financial management.
+- Maintenance Tracking: High-level maintenance status monitoring.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Technology Stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The following tools and technologies are used in this project:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| **Category**         | **Technology**      | **Icon** |
+|----------------------|---------------------|----------|
+| Frontend             | JavaScript          | <img height="50" src="https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png"> |
+| Frontend             | React               | <img height="50" src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png"> |
+| Frontend             | HTML                | <img height="50" src="https://user-images.githubusercontent.com/25181517/192158954-f88b5814-d510-4564-b285-dff7d6400dad.png"> |
+| Frontend             | CSS                 | <img height="50" src="https://user-images.githubusercontent.com/25181517/183898674-75a4a1b1-f960-4ea9-abcb-637170a00a75.png"> |
+| Frontend Framework   | Bootstrap           | <img height="50" src="https://user-images.githubusercontent.com/25181517/183898054-b3d693d4-dafb-4808-a509-bab54cf5de34.png"> |
+| Backend              | PostgreSQL          | <img height="50" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png"> |
+| Version Control      | Git                 | <img height="50" src="https://user-images.githubusercontent.com/25181517/192108372-f71d70ac-7ae6-4c0d-8395-51d8870c2ef0.png"> |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Key Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Centralized Database**: Efficient management of buses, routes, schedules, and passenger information.
+- **Dynamic Routing**: Adapts to varying travel demands with flexible source, destination, and stop configurations.
+- **Real-Time Seat Tracking**: Ensures accurate seat availability for bookings.
+- **Passenger and Ticketing Records**: Comprehensive booking records and ticket history.
+- **Responsive Interface**: Developed with React and Bootstrap for accessibility across devices.
+  
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Frontend Setup**:
+   - Install dependencies with `npm install`.
+   - Start the frontend server using `npm start`.
+   
+2. **Backend Setup**:
+   - Set up PostgreSQL database and configure connection details.
+   - Run database migrations and seed data as necessary.
+   - Start the backend server.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Developed with:** React, CSS, Bootstrap, and PostgreSQL
