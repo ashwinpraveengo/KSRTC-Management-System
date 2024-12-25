@@ -2,17 +2,13 @@ import React from 'react';
 import styles from '../../assets/styles/Signup.module.css';
 import image1 from '../../assets/images/loginPage.jpeg';
 import image2 from '../../assets/images/cross.png';
+import Header from '../../components/Header/Header'
 
 const Signup = () => {
   return (
+    <>
+    <Header/>
     <div className={styles.window}>
-        {/* <div className={styles.mainCard}>
-          <div className={styles.imgContainer}>
-            <img className={styles.imageStyle} src={image1} alt='skyfall'/>
-          </div>
-        </div> */}
-
-
         <div className={styles.contentContainer}>
           <div className={styles.contentHolder}>
             <a href="/" className={styles.navElement}>
@@ -78,6 +74,7 @@ const Signup = () => {
         </div>
       </div>
       </div>
+      </>
   )
 }
 
