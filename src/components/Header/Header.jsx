@@ -17,9 +17,10 @@ const Header = () => {
           </div>
           <nav className={styles.navBar}>
             <ul className={styles.navLinks}>
-              <li><a href="#Login" className={styles.navLink}>SIGN IN</a></li>
+              <li><Link to="/" className={styles.navLink}>HOME</Link></li>
+              <li><Link to="/login" className={styles.navLink}>SIGN IN</Link></li>
               <li><Link to="/signup" className={styles.navLink}>CREATE ACCOUNT</Link></li>
-              <li><a href="#lists" className={styles.navLink}>CHECK BUSES</a></li>
+              <li><Link href="#lists" className={styles.navLink}>SEARCH BUSES</Link></li>
             </ul>
           </nav>
           <div className={styles.searchBar}>

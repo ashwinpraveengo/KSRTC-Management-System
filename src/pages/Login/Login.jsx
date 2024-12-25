@@ -4,17 +4,17 @@ import image2 from '../../assets/images/cross.png';
 import Header from '../../components/Header/Header'
 import { Link } from 'react-router-dom';
 
-const Signup = () => {
+const Login = () => {
   return (
     <>
-    <Header/>
-    <div className={styles.window}>
+      <Header/>
+        <div className={styles.window}>
         <div className={styles.contentContainer}>
           <div className={styles.contentHolder}>
             <Link to="/" className={styles.navElement}>
               <img src={image2} alt="Cross Icon" width={35} height={35} />
             </Link>
-            <h1 className={styles.contentText}>SignUp to KSRTC</h1>
+            <h1 className={styles.contentText}>LOGIN to KSRTC</h1>
             <div className={styles.formContainer}>
               <form className={styles.formHolder}>
               <div>
@@ -50,23 +50,9 @@ const Signup = () => {
               />
             </div>
 
-            <div style={{ marginTop: "10px", marginBottom: "15px", display: "flex", alignItems: "center" }}>
-              <input type="checkbox" required id="checkbox1" name="Terms" style={{ marginRight: "10px" }} />
-              <label htmlFor="checkbox1" style={{ fontSize: "14px", color: "white" }}>
-                I'm at least 16 years old and accept the Terms of Use.
-              </label>
-            </div>
-
-            <div style={{ marginBottom: "20px", display: "flex", alignItems: "center" }}>
-              <input type="checkbox" required id="checkbox2" name="Privacy Policy" style={{ marginRight: "10px" }} />
-              <label htmlFor="checkbox2" style={{ fontSize: "14px", color: "white" }}>
-                I accept the Privacy Policy.
-              </label>
-            </div>
-
             <div>
               <button type="submit" className={styles.submitBtn}>
-                SIGN UP
+                LOGIN
               </button>
             </div>
           </form>
@@ -74,8 +60,8 @@ const Signup = () => {
         </div>
       </div>
       </div>
-      </>
+    </>
   )
 }
 
-export default Signup;
+export default Login
