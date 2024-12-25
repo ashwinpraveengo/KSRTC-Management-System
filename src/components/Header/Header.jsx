@@ -17,16 +17,12 @@ const Header = () => {
           </div>
           <nav className={styles.navBar}>
             <ul className={styles.navLinks}>
-              <li><Link to="/" className={styles.navLink}>HOME</Link></li>
-              <li><Link to="/login" className={styles.navLink}>SIGN IN</Link></li>
-              <li><Link to="/signup" className={styles.navLink}>CREATE ACCOUNT</Link></li>
-              <li><Link href="#lists" className={styles.navLink}>SEARCH BUSES</Link></li>
+              <li><Link to="/" className={styles.navElement}>HOME</Link></li>
+              <li><Link to="/login" className={styles.navElement}>SIGN IN</Link></li>
+              <li><Link to="/signup" className={styles.navElement}>CREATE ACCOUNT</Link></li>
+              <li><Link href="#lists" className={styles.navElement}>SEARCH BUSES</Link></li>
             </ul>
           </nav>
-          <div className={styles.searchBar}>
-            <input type="text" placeholder="Search" className={styles.searchInput} />
-            <button type="submit" className={styles.searchButton}>&#x1F50D;</button> {/* Unicode for a search icon */}
-          </div>
       </header>
     </div>
   )

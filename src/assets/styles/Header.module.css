@@ -1,14 +1,13 @@
-/* General Styling */
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #000; /* Dark background */
+  background-color: #141111;
   padding: 10px 20px;
   color: white;
 }
 
-/* Logo Styling */
 .logo {
   display: flex;
   align-items: center;
@@ -16,8 +15,12 @@
 }
 
 .logoImage {
-  width: 40px; /* Adjust logo size */
+  width: 50px; 
+  height: auto;
   margin-right: 10px;
+}
+.logoImage:hover{
+  transform: scale(1.1); 
 }
 
 .logoText {
@@ -27,31 +30,32 @@
 }
 
 .navBar{
-  margin-left: 5%;
+  margin-right: 25%;
+  padding: 0px 15px 0px 15px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 100;
+  font-size: large;
+
 }
-/* Navigation Links */
 .navLinks {
   display: flex;
   list-style: none;
   gap: 20px;
 }
-
-.navLink {
+.navElement {
   text-decoration: none;
   color: white;
   font-weight: bold;
-  transition: color 0.3s;
 }
 
-.navLink:hover {
-  color: #00BFFF; /* Highlight color */
+.navElement:hover {
+  text-shadow: 1px 1px 2px white;
 }
 
-/* Search Bar */
 .searchBar {
   display: flex;
   align-items: center;
-  background-color: #333;
+  background-color: #000000;
   padding: 5px 10px;
   border-radius: 20px;
   margin-right: 20%;
