@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 const Signup = () => {
   return (
     <>
-    <Header/>
     <div className={styles.window}>
         <div className={styles.contentContainer}>
           <div className={styles.contentHolder}>
