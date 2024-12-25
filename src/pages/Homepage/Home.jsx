@@ -1,46 +1,132 @@
-import React from "react";
+import React, { useState } from "react";
 import './Home.css';
 import Destinations from "../../components/Destinations/topdest";
 import Footer from "../../components/footer/footer";
 
+const placesInKerala = [
+  "Kochi",
+  "Thiruvananthapuram",
+  "Kozhikode",
+  "Kannur",
+  "Alappuzha",
+  "Thrissur",
+  "Palakkad",
+  "Idukki",
+  "Malappuram",
+  "Kottayam",
+  "Kasaragod",
+  "Wayanad",
+  "Pathanamthitta",
+  "Ernakulam",
+];
+
 function Home() {
+  const [source, setSource] = useState("");
+  const [destination, setDestination] = useState("");
+  const [sourceSuggestions, setSourceSuggestions] = useState([]);
+  const [destinationSuggestions, setDestinationSuggestions] = useState([]);
+
+  const filterSuggestions = (input, type) => {
+    const filteredPlaces = placesInKerala.filter((place) =>
+      place.toLowerCase().startsWith(input.toLowerCase())
+    );
+
+    if (type === "source") {
+      setSourceSuggestions(filteredPlaces);
+    } else {
+      setDestinationSuggestions(filteredPlaces);
+    }
+  };
+
+  const handleInputChange = (e, type) => {
+    const input = e.target.value;
+    if (type === "source") {
+      setSource(input);
+      filterSuggestions(input, "source");
+    } else {
+      setDestination(input);
+      filterSuggestions(input, "destination");
+    }
+  };
+
+  const handleSuggestionClick = (suggestion, type) => {
+    if (type === "source") {
+      setSource(suggestion);
+      setSourceSuggestions([]);
+    } else {
+      setDestination(suggestion);
+      setDestinationSuggestions([]);
+    }
+  };
+
   return (
-    <><div className="home-container">
-          <div className="header">
-              <div className="header-text">
-                  Welcome to Kerala's No. Booking Website ! 
-              </div>
-              <div className="form-container">
-                  <div className="form">
-                      <div className="input-group">
-                          <label className="input-label">From</label>
-                          <input
-                              type="text"
-                              placeholder="Enter source"
-                              className="input-field" />
-                      </div>
-                      <div className="input-group">
-                          <label className="input-label">To</label>
-                          <input
-                              type="text"
-                              placeholder="Enter destination"
-                              className="input-field" />
-                      </div>
-                      <div className="input-group">
-                          <label className="input-label">Date</label>
-                          <input
-                              type="date"
-                              className="input-field" />
-                      </div>
-                      <button className="search-button">SEARCH BUSES</button>
-                  </div>
-              </div>
-              <div className="tagline">
-                  ജീവിതം ഒരു യാത്രയാണ്, ഓരോ നിമിഷവും ആസ്വദിക്കൂ.
-              </div>
+    <>
+      <div className="home-container">
+        <div className="header">
+          <div className="header-text">
+            Welcome to Kerala's No. Booking Website!
           </div>
-      </div><Destinations /><Footer/></>
-      
+          <div className="form-container">
+            <div className="form">
+              <div className="input-group">
+                <label className="input-label">From</label>
+                <input
+                  type="text"
+                  placeholder="Enter source"
+                  className="input-field"
+                  value={source}
+                  onChange={(e) => handleInputChange(e, "source")}
+                />
+                {sourceSuggestions.length > 0 && (
+                  <ul className="suggestions-list">
+                    {sourceSuggestions.map((place, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleSuggestionClick(place, "source")}
+                      >
+                        {place}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div className="input-group">
+                <label className="input-label">To</label>
+                <input
+                  type="text"
+                  placeholder="Enter destination"
+                  className="input-field"
+                  value={destination}
+                  onChange={(e) => handleInputChange(e, "destination")}
+                />
+                {destinationSuggestions.length > 0 && (
+                  <ul className="suggestions-list">
+                    {destinationSuggestions.map((place, index) => (
+                      <li
+                        key={index}
+                        onClick={() => handleSuggestionClick(place, "destination")}
+                      >
+                        {place}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              <div className="input-group">
+                <label className="input-label">Date</label>
+                <input type="date" className="input-field" />
+              </div>
+              <button className="search-button">SEARCH BUSES</button>
+            </div>
+          </div>
+          <div className="tagline">
+            ജീവിതം ഒരു യാത്രയാണ്, ഓരോ നിമിഷവും ആസ്വദിക്കൂ.
+          </div>
+        </div>
+      </div>
+      <Destinations />
+      <Footer />
+    </>
   );
 }
 
