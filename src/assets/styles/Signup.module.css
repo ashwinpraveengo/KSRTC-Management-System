@@ -1,0 +1,104 @@
+.mainCard {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40%;
+}
+.window{
+    background-image: url("../images/loginPage.jpeg");
+    background-size: cover;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+.imgContainer{
+    width: 50%;
+    display: flex;
+    overflow : hidden;
+}
+.imageStyle{
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center, bottom;
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%);
+    mask-repeat: no-repeat;
+    mask-position: center, bottom;
+}
+.contentContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color:#00000000 ;
+}
+.contentText{
+    padding-top: 10px;
+    font-size: x-large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-align: center;
+    padding-right: 10px;
+    color: aliceblue;
+}
+.contentHolder{
+    border-radius: 15px;
+    width: 40%;
+    background-color: rgb(29, 24, 24);
+    margin-bottom: 20px;
+}
+.navElement{
+    float: left;
+    padding: 10px;
+}
+.navElement:hover{
+    transform: scale(1.15);
+}
+.formHolder{
+    padding-top: 5%;
+    width: 60%;
+    color: white;
+    text-align: left;
+    padding-left: 10%;
+}
+.formContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.Labels{
+    text-align: left;
+    
+}
+.inputBox{
+    width: 80%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 2px;
+}
+.inputBox:hover{
+    transform: scale(1.01);
+    box-shadow: 0 4px 10px rgba(198, 181, 181, 0.3);
+}
+.submitBtn{
+    width: 20%;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: #17d21a;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.submitBtn:hover{
+    background-color: #099d3d;
+}

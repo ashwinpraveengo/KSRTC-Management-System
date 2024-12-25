@@ -1,0 +1,72 @@
+/* General Styling */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000; /* Dark background */
+  padding: 10px 20px;
+  color: white;
+}
+
+/* Logo Styling */
+.logo {
+  display: flex;
+  align-items: center;
+  padding-left: 20%;
+}
+
+.logoImage {
+  width: 40px; /* Adjust logo size */
+  margin-right: 10px;
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.navBar{
+  margin-left: 5%;
+}
+/* Navigation Links */
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navLink:hover {
+  color: #00BFFF; /* Highlight color */
+}
+
+/* Search Bar */
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-right: 20%;
+}
+
+.searchInput {
+  border: none;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+.searchButton {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
