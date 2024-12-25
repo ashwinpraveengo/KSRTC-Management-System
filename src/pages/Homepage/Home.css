@@ -1,0 +1,123 @@
+.home-container {
+    min-height: 100vh;
+    background-image: url('https://www.keralartc.com/storage/images/banner_1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    color: white;
+  }
+  
+  .header {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  .header-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    padding: 0 2rem;
+  }
+  
+  .form {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 2rem 3rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-label {
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input-field {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-field:focus {
+    border-color: #f87171;
+    box-shadow: 0 0 5px rgba(248, 113, 113, 0.5);
+  }
+  
+  .search-button {
+    background-color: #0f7043;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 1rem;
+  }
+  
+  .search-button:hover {
+    background-color: #ef8989;
+  }
+  
+  .tagline {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color: #ffb700;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  @media (max-width: 768px) {
+    .header-text {
+      font-size: 2.5rem;
+    }
+  
+    .form-container {
+      padding: 0;
+    }
+  
+    .form {
+      padding: 1.5rem;
+      max-width: 100%;
+    }
+  
+    .search-button {
+      font-size: 1rem;
+      padding: 0.8rem 1.5rem;
+    }
+  
+    .tagline {
+      font-size: 1.2rem;
+    }
+  }
+    

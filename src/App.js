@@ -1,21 +1,27 @@
 import React from 'react';
-import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import Signup from './pages/Signup/Signup';
 import Login from './pages/Login/Login';
+import Home from './pages/Homepage/Home';
 
-
+const Layout = () => (
+  <div>
+    <Header />
+    <Outlet />
+  </div>
+);
 
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Header />,
-    },
-    {
-      path: '/signup',
-      element: <Signup />,
+      element: <Layout />, 
+      children: [
+        { path: '/', element: <Home /> }, 
+        { path: '/signup', element: <Signup /> },
+      ],
     },
     {
       path: '/login',
@@ -23,9 +29,7 @@ function App() {
     }
   ]);
 
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

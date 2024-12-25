@@ -8,11 +8,9 @@ const Header = () => {
     <div>
         <header className={styles.header}>
           <div className={styles.logo}>
-            <img
-              src={ksrtcImage}  
-              alt="Logo"
-              className={styles.logoImage}
-            />
+          <Link to="/">
+            <img src={ksrtcImage} alt="Logo" className={styles.logoImage} />
+          </Link>
             <h1 className={styles.logoText}>KSRTC</h1>
           </div>
           <nav className={styles.navBar}>

@@ -1,0 +1,51 @@
+.destinations {
+    text-align: center;
+    padding: 40px;
+    background-color: #000000;
+  }
+  
+  .destinations h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ce8423;
+  }
+  
+  .destinations p {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .destination-card {
+    position: relative;
+    overflow: hidden;
+    margin: 10px; 
+  }
+  
+  .destination-card img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .destination-name {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .slick-slide {
+    padding: 15px; 
+  }
+  
+  .slick-list {
+    margin: 0 -10px; 
+  }
+  
