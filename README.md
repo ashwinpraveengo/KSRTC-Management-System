@@ -68,4 +68,4 @@ The following tools and technologies are used in this project:
 
 ---
 
-**Developed with:** React, CSS, Bootstrap, and PostgreSQL
+**Developed with:** React, CSS, Bootstrap, and PostgreSQL.
