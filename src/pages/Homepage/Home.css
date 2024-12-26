@@ -65,6 +65,7 @@
     font-size: 1rem;
     border-radius: 6px;
     outline: none;
+    color: black;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
