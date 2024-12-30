@@ -24,7 +24,7 @@ const placesInKerala = [
 function Home() {
   const [source, setSource] = useState("");
   const [destination, setDestination] = useState("");
-  const [date,setDate]=useState("");
+  const [date, setDate] = useState("");
   const [sourceSuggestions, setSourceSuggestions] = useState([]);
   const [destinationSuggestions, setDestinationSuggestions] = useState([]);
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ function Home() {
     if (type === "source") {
       setSource(input);
       filterSuggestions(input, "source");
-    }else if(type=="date"){
+    } else if (type === "date") {
       setDate(input);
     } else {
       setDestination(input);
@@ -64,14 +64,13 @@ function Home() {
     }
   };
 
-    const handleSearchClick = () => {
-      if (source && destination) {
-        navigate(`/search-results?source=${source}&destination=${destination}&date=${date}`);
-      } else {
-        alert("Please fill in both source and destination fields.");
-      }
-    };
-  
+  const handleSearchClick = () => {
+    if (source && destination) {
+      navigate(`/search-results?source=${source}&destination=${destination}&date=${date}`);
+    } else {
+      alert("Please fill in both source and destination fields.");
+    }
+  };
 
   return (
     <>
@@ -128,9 +127,12 @@ function Home() {
               </div>
               <div className="input-group">
                 <label className="input-label">Date</label>
-                <input type="date" className="input-field"
-                value={date}
-                onChange={(e) => handleInputChange(e, "date")}/>
+                <input
+                  type="date"
+                  className="input-field"
+                  value={date}
+                  onChange={(e) => handleInputChange(e, "date")}
+                />
               </div>
               <button className="search-button" onClick={handleSearchClick}>
                 SEARCH BUSES

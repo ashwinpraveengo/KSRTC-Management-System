@@ -7,6 +7,10 @@ import Login from './pages/Login/Login';
 import Home from './pages/Homepage/Home';
 import SearchResults from './pages/SearchResults/searchresults';
 import PassengerDetails from './pages/Book/passengerdetails';
+import AdminHome from './pages/Admin/AdminHome';
+import CreateCrew from './pages/Admin/CreateCrew';
+import AddRoute from './pages/Admin/AddRoute.jsx';
+import AddSchedule from './pages/Admin/AddSchedule.jsx';
 
 const Layout = () => (
   <div>
@@ -37,8 +41,23 @@ function App() {
     {
       path: '/passenger-details',
       element: <PassengerDetails/>,
-    }
-    
+    },
+    {
+      path: '/admin',
+      element: <AdminHome/>,
+    },
+    {
+      path: '/add-crew',
+      element: <CreateCrew/>,
+    },
+    {
+      path: '/add-route',
+      element: <AddRoute/>,
+    },
+    {
+      path: '/add-schedule',
+      element: <AddSchedule/>,
+    },
   ]);
 
   return <RouterProvider router={router} />;
