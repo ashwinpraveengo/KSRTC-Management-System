@@ -7,23 +7,20 @@ const ConfirmationPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Retrieve the PNR from the URL query parameters
   const searchParams = new URLSearchParams(location.search);
   const pnr = searchParams.get('pnr');
   const [ticketDetails, setTicketDetails] = useState(null);
 
   useEffect(() => {
     if (pnr) {
-      // Simulate an API call to fetch ticket details using the PNR
-      // You should replace this with an actual API call if needed
+
       const fetchTicketDetails = async () => {
         try {
           const response = await fetch(`/api/ticket-details?pnr=${pnr}`);
-          const text = await response.text();  // Get response as text first
-      
-          console.log("Response text:", text);  // Log the raw response
-      
-          // Check if the response is valid JSON
+          const text = await response.text();  
+
+          console.log("Response text:", text);  
+
           try {
             const data = JSON.parse(text);
             setTicketDetails(data);
@@ -31,7 +28,7 @@ const ConfirmationPage = () => {
             console.error('Error parsing JSON:', error);
             console.error('Invalid JSON response:', text);
           }
-      
+
         } catch (error) {
           console.error('Error fetching ticket details:', error);
         }
