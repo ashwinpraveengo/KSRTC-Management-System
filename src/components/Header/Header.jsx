@@ -18,7 +18,7 @@ const Header = () => {
               <li><Link to="/" className={styles.navElement}>HOME</Link></li>
               <li><Link to="/login" className={styles.navElement}>SIGN IN</Link></li>
               <li><Link to="/signup" className={styles.navElement}>CREATE ACCOUNT</Link></li>
-              <li><Link href="#lists" className={styles.navElement}>SEARCH BUSES</Link></li>
+              <li><Link to="/admin" className={styles.navElement}>ADMIN</Link></li>
             </ul>
           </nav>
       </header>
