@@ -1,10 +1,22 @@
-import React, { useState } from "react";
-import axios from "axios"; // Ensure axios is installed and imported
+import React, { useState, useEffect } from "react";
+import axios from "axios"; 
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useLocation, useNavigate } from "react-router-dom";
 import './PassengerDetails.css';
 
 const PassengerDetails = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const searchParams = new URLSearchParams(location.search);
+  const source = searchParams.get("source");
+  const destination = searchParams.get("destination");
+  const date = searchParams.get("date");
+  const fare = searchParams.get("fare");
+  const seatsLeft = parseInt(searchParams.get("seats_left"));
+  const scheduleId = searchParams.get("schedule_id");
+
   const [formData, setFormData] = useState({
     firstName: "",
     middleName: "",
@@ -13,20 +25,45 @@ const PassengerDetails = () => {
     gender: "",
     email: "",
     age: "",
-    scheduleId: "S999", // Example Schedule ID
-    seatNumber: 27, // Example seat number
-    fare: 1149, // Example fare
+    scheduleId: scheduleId,
+    seatNumber: "", 
+    fare: fare,
   });
 
   const [loading, setLoading] = useState(false);
+  const [availableSeats, setAvailableSeats] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  useEffect(() => {
+    const fetchAvailableSeats = async () => {
+      try {
+        const response = await axios.get(`/api/get-available-seats?schedule_id=${scheduleId}`);
+        if (response.data) {
+          setAvailableSeats(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching available seats:", error);
+      }
+    };
+
+    if (scheduleId) {
+      fetchAvailableSeats();
+    }
+  }, [scheduleId]);
+
+  const handleSeatChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      seatNumber: e.target.value, // Update seat number
+    }));
+  };
+
   const handleSubmit = async () => {
-    if (!formData.firstName || !formData.contactNumber || !formData.email) {
+    if (!formData.firstName || !formData.contactNumber || !formData.email || !formData.seatNumber) {
       alert("Please fill all required fields!");
       return;
     }
@@ -46,7 +83,6 @@ const PassengerDetails = () => {
 
       console.log("Passenger Added:", passengerResponse.data);
 
-      // Generate Ticket
       const ticketResponse = await axios.post("/api/generate-ticket", {
         contactNumber: formData.contactNumber,
         scheduleId: formData.scheduleId,
@@ -55,6 +91,8 @@ const PassengerDetails = () => {
       });
 
       alert(`Ticket booked successfully! PNR: ${ticketResponse.data.pnr}`);
+
+      navigate(`/confirmation?pnr=${ticketResponse.data.pnr}`);
     } catch (error) {
       console.error("Error booking ticket:", error);
       alert("Error booking ticket. Please try again.");
@@ -152,8 +190,27 @@ const PassengerDetails = () => {
             onChange={handleChange}
           />
         </Form.Group>
+
+        <Form.Group controlId="seatNumber" className="mb-3">
+          <Form.Label>Select Seat Number</Form.Label>
+          <Form.Control
+            as="select"
+            name="seatNumber"
+            value={formData.seatNumber}
+            onChange={handleSeatChange}
+          >
+            <option value="">Choose a seat</option>
+            {availableSeats.map((seat) => (
+              <option key={seat} value={seat}>
+                Seat {seat}
+              </option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h5>Total Amount: ₹{formData.fare}</h5>
+          <h6>Seat Available: {seatsLeft}</h6>
           <Button variant="danger" size="lg" onClick={handleSubmit} disabled={loading}>
             {loading ? "Processing..." : "PROCEED TO PAY"}
           </Button>

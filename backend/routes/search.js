@@ -43,4 +43,29 @@ router.get('/search', async (req, res) => {
     }
 });
 
+router.get('/get-available-seats', async (req, res) => {
+    const { schedule_id } = req.query;
+
+    if (!schedule_id) {
+        return res.status(400).json({ error: 'Schedule ID is required' });
+    }
+
+    try {
+        const query = `
+            SELECT SeatNumber FROM TICKET WHERE ScheduleID = $1;
+        `;
+        const result = await pool.query(query, [schedule_id]);
+
+        const bookedSeats = result.rows.map(row => row.seatnumber);
+        const allSeats = Array.from({ length: 30 }, (_, i) => i + 1);
+        const availableSeats = allSeats.filter(seat => !bookedSeats.includes(seat));
+
+        res.json(availableSeats);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+
 module.exports = router;

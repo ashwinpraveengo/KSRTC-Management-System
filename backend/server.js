@@ -9,10 +9,12 @@ app.use(cors({
 
 const searchRoutes = require('./routes/search');
 const passengerRoutes = require('./routes/passenger');
+const ticketRoutes = require('./routes/ticket');
 
 app.use(cors());
 app.use(express.json());
 app.use('/api', searchRoutes);
+app.use('/api', ticketRoutes);
 app.use('/api', passengerRoutes);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

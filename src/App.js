@@ -11,6 +11,7 @@ import AdminHome from './pages/Admin/AdminHome';
 import CreateCrew from './pages/Admin/CreateCrew';
 import AddRoute from './pages/Admin/AddRoute.jsx';
 import AddSchedule from './pages/Admin/AddSchedule.jsx';
+import ConfirmationPage from './pages/Conf/ConfirmationPage.jsx';
 
 const Layout = () => (
   <div>
@@ -41,6 +42,10 @@ function App() {
     {
       path: '/passenger-details',
       element: <PassengerDetails/>,
+    },
+    {
+      path: '/confirmation',
+      element: <ConfirmationPage/>,
     },
     {
       path: '/admin',
