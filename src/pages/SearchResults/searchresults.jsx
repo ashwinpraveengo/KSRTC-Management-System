@@ -75,7 +75,7 @@ function SearchResults() {
                     return (
                         <div className="result-container" key={index}>
                             <div className="operator-section">
-                                <p className="operator-name">{result.operator || "Unknown Operator"}</p>
+                                <p className="operator-name">{result.bustype || "Unknown Operator"}</p>
                             </div>
                             <div className="details-section">
                                 <div className="time-info">

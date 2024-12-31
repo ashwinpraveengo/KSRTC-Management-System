@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; 
+import axios from "axios";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import './PassengerDetails.css';
+import "./PassengerDetails.css";
 
 const PassengerDetails = () => {
   const location = useLocation();
@@ -26,16 +26,18 @@ const PassengerDetails = () => {
     email: "",
     age: "",
     scheduleId: scheduleId,
-    seatNumber: "", 
+    seatNumber: "",
     fare: fare,
   });
 
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [availableSeats, setAvailableSeats] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
 
   useEffect(() => {
@@ -55,16 +57,27 @@ const PassengerDetails = () => {
     }
   }, [scheduleId]);
 
-  const handleSeatChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      seatNumber: e.target.value, // Update seat number
-    }));
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.firstName.trim()) newErrors.firstName = "First name is required.";
+    if (!formData.contactNumber.trim()) newErrors.contactNumber = "Contact number is required.";
+    else if (!/^\d{10}$/.test(formData.contactNumber)) newErrors.contactNumber = "Contact number must be 10 digits.";
+
+    if (!formData.email.trim()) newErrors.email = "Email is required.";
+    else if (!/^[\w-.]+@[\w-]+\.[a-z]{2,}$/.test(formData.email)) newErrors.email = "Invalid email format.";
+
+    if (!formData.gender) newErrors.gender = "Gender is required.";
+    if (!formData.age.trim()) newErrors.age = "Age is required.";
+    else if (parseInt(formData.age) <= 0 || parseInt(formData.age) > 120) newErrors.age = "Age must be between 1 and 120.";
+
+    if (!formData.seatNumber) newErrors.seatNumber = "Please select a seat number.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async () => {
-    if (!formData.firstName || !formData.contactNumber || !formData.email || !formData.seatNumber) {
-      alert("Please fill all required fields!");
+    if (!validateForm()) {
       return;
     }
 
@@ -113,7 +126,9 @@ const PassengerDetails = () => {
             placeholder="Enter your first name"
             value={formData.firstName}
             onChange={handleChange}
+            isInvalid={!!errors.firstName}
           />
+          <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="middleName" className="mb-3">
           <Form.Label>Middle Name</Form.Label>
@@ -146,6 +161,7 @@ const PassengerDetails = () => {
                 value="M"
                 checked={formData.gender === "M"}
                 onChange={handleChange}
+                isInvalid={!!errors.gender}
               />
             </Col>
             <Col>
@@ -156,9 +172,11 @@ const PassengerDetails = () => {
                 value="F"
                 checked={formData.gender === "F"}
                 onChange={handleChange}
+                isInvalid={!!errors.gender}
               />
             </Col>
           </Row>
+          <div className="invalid-feedback">{errors.gender}</div>
         </Form.Group>
         <Form.Group controlId="age" className="mb-3">
           <Form.Label>Age</Form.Label>
@@ -168,7 +186,9 @@ const PassengerDetails = () => {
             placeholder="Enter your age"
             value={formData.age}
             onChange={handleChange}
+            isInvalid={!!errors.age}
           />
+          <Form.Control.Feedback type="invalid">{errors.age}</Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="email" className="mb-3">
           <Form.Label>Email</Form.Label>
@@ -178,7 +198,9 @@ const PassengerDetails = () => {
             placeholder="Enter your email"
             value={formData.email}
             onChange={handleChange}
+            isInvalid={!!errors.email}
           />
+          <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="contactNumber" className="mb-3">
           <Form.Label>Contact Number</Form.Label>
@@ -188,7 +210,9 @@ const PassengerDetails = () => {
             placeholder="Enter your contact number"
             value={formData.contactNumber}
             onChange={handleChange}
+            isInvalid={!!errors.contactNumber}
           />
+          <Form.Control.Feedback type="invalid">{errors.contactNumber}</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="seatNumber" className="mb-3">
@@ -197,7 +221,8 @@ const PassengerDetails = () => {
             as="select"
             name="seatNumber"
             value={formData.seatNumber}
-            onChange={handleSeatChange}
+            onChange={handleChange}
+            isInvalid={!!errors.seatNumber}
           >
             <option value="">Choose a seat</option>
             {availableSeats.map((seat) => (
@@ -206,6 +231,7 @@ const PassengerDetails = () => {
               </option>
             ))}
           </Form.Control>
+          <Form.Control.Feedback type="invalid">{errors.seatNumber}</Form.Control.Feedback>
         </Form.Group>
 
         <div className="d-flex justify-content-between align-items-center mb-4">

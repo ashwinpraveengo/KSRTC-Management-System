@@ -13,7 +13,6 @@ const ConfirmationPage = () => {
 
   useEffect(() => {
     if (pnr) {
-
       const fetchTicketDetails = async () => {
         try {
           const response = await fetch(`/api/ticket-details?pnr=${pnr}`);
