@@ -18,7 +18,7 @@ const Login = () => {
             <div className={styles.formContainer}>
               <form className={styles.formHolder}>
               <div>
-                <label htmlFor="Email">Email Address <br /></label>
+                <label className={styles.inputHolder} htmlFor="Email">Email Address <br /></label>
                 <input
                   required
                   type="email"
@@ -29,7 +29,7 @@ const Login = () => {
               </div>
 
             <div>
-              <label htmlFor="username"> Username <br /> </label>
+              <label className={styles.inputHolder} htmlFor="username"> Username <br /> </label>
               <input
                 required
                 type="text"
@@ -40,7 +40,7 @@ const Login = () => {
             </div>
 
             <div>
-              <label htmlFor="password">Password <br /> </label>
+              <label className={styles.inputHolder} htmlFor="password">Password <br /> </label>
               <input
                 required
                 type="password"
