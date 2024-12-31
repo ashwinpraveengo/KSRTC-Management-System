@@ -127,7 +127,8 @@ router.get('/arithmetic', async (req, res) => {
         SELECT Bus.BusType, SUM(Bus.NumberOfSeats) AS TotalSeats
         FROM Bus
         GROUP BY Bus.BusType
-        HAVING SUM(Bus.NumberOfSeats) * 1.1 > 80;
+        HAVING SUM(Bus.NumberOfSeats) > 60
+        AND (Bus.BusType = 'Super Fast' OR Bus.BusType = 'Swift');  
         `
         ;
 

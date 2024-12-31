@@ -1,0 +1,203 @@
+-- BUS Table
+CREATE TABLE Bus (
+    BusID VARCHAR(10) PRIMARY KEY,
+    BusNumber VARCHAR(20) NOT NULL,
+    BusType VARCHAR(50) NOT NULL,
+    NumberOfSeats INT CHECK (NumberOfSeats > 0 AND NumberOfSeats <= 30)
+);
+
+-- ROUTE Table
+CREATE TABLE Route (
+    RouteID VARCHAR(10)UNIQUE,
+    Source VARCHAR(50) NOT NULL,
+    Destination VARCHAR(50) NOT NULL,
+    Distance INT CHECK (Distance > 0),
+    PRIMARY KEY(RouteID, Source, Destination)
+);
+
+-- SCHEDULE Table
+CREATE TABLE Schedule (
+    ScheduleID VARCHAR(10) PRIMARY KEY,
+    RouteID VARCHAR(10),
+    BusID VARCHAR(10),
+    BoardingDate TIMESTAMP NOT NULL,
+    ArrivalDate TIMESTAMP NOT NULL,
+    FOREIGN KEY (RouteID) REFERENCES Route(RouteID) ON DELETE CASCADE,
+    FOREIGN KEY (BusID) REFERENCES Bus(BusID) ON DELETE CASCADE,
+    CHECK (ArrivalDate > BoardingDate)
+);
+
+-- PASSENGER Table
+CREATE TABLE Passenger (
+    FirstName VARCHAR(50) NOT NULL,
+    MiddleName VARCHAR(50),
+    LastName VARCHAR(50) NOT NULL,
+    ContactNumber BIGINT PRIMARY KEY,
+    Gender CHAR(1) CHECK (Gender IN ('M', 'F')),
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Age INT CHECK (Age > 0)
+);
+
+-- TICKET Table
+CREATE TABLE Ticket (
+    PNRNO INT PRIMARY KEY,
+	ScheduleID VARCHAR(10),
+    ContactNumber BIGINT,
+    SeatNumber INT CHECK (SeatNumber > 0 AND SeatNumber <= 30),
+    Fare DECIMAL(10, 2) CHECK (Fare > 0),
+	FOREIGN KEY (ScheduleID) REFERENCES Schedule(ScheduleID),
+    FOREIGN KEY (ContactNumber) REFERENCES Passenger(ContactNumber)
+);
+
+-- FARE DETAILS Table
+CREATE TABLE FareDetails (
+    Fare DECIMAL(10, 2) CHECK (Fare > 0), 
+    Discount DECIMAL(5, 2) CHECK (Discount >= 0 AND Discount <= 100)
+);
+
+-- CREW Table
+CREATE TABLE Crew (
+    CrewID INT,
+    Role VARCHAR(50) NOT NULL,
+    LicenseNumber VARCHAR(20) UNIQUE,
+    PRIMARY KEY(CrewID, LicenseNumber)
+);
+
+-- CREW DETAILS Table
+CREATE TABLE CrewDetails (
+    LicenseNumber VARCHAR(20),
+    FirstName VARCHAR(50) NOT NULL,
+    MiddleName VARCHAR(50),
+    LastName VARCHAR(50) NOT NULL,
+    ContactNumber BIGINT UNIQUE NOT NULL,
+    PRIMARY KEY (LicenseNumber),
+    FOREIGN KEY (LicenseNumber) REFERENCES Crew(LicenseNumber) ON DELETE CASCADE
+);
+
+
+-- Insert values into BUS table
+INSERT INTO Bus (BusID, BusNumber, BusType, NumberOfSeats)
+VALUES
+    ('B123', 'KL01AA3187', 'Swift', 30),
+    ('B456', 'KL09AB2024', 'Super Fast', 30),
+    ('B789', 'KL01AA1010', 'Super Deluxe', 30),
+    ('B101', 'KL09AB3030', 'Sleeper', 30),
+    ('B114', 'KL04EC3344', 'Low Floor', 30),
+    ('B122', 'KL02AA1122', 'Super Deluxe', 30),
+    ('B124', 'KL04AB3344', 'Super Fast', 30),
+    ('B125', 'KL05AC4455', 'Swift', 30),
+    ('B126', 'KL06AD5566', 'Super Fast', 30),
+    ('B127', 'KL07AE6677', 'Low Floor', 30),
+    ('B128', 'KL08AF7788', 'Low Floor', 30),
+    ('B129', 'KL09AG8899', 'Sleeper', 30),
+    ('B130', 'KL10AH9900', 'Sleeper', 30),
+    ('B131', 'KL11AI1011', 'Swift', 30);
+;
+
+-- Insert values into ROUTE table
+INSERT INTO Route (RouteID, Source, Destination, Distance)
+VALUES
+    ('R456', 'Thiruvananthapuram', 'Bengaluru', 722),
+    ('R457', 'Ernakulam', 'Kozhikode', 177),
+    ('R458', 'Ernakulam', 'Bengaluru', 500),
+    ('R459', 'Thrissur', 'Thiruvananthapuram', 284),
+    ('R460', 'Thrissur', 'Kollam', 200),
+    ('R501', 'Thiruvananthapuram', 'Kochi', 200),
+    ('R502', 'Kochi', 'Kottayam', 60),
+    ('R504', 'Thrissur', 'Alappuzha', 55),
+    ('R505', 'Kottayam', 'Pathanamthitta', 35),
+    ('R506', 'Kozhikode', 'Bengaluru', 330),
+    ('R507', 'Thiruvananthapuram', 'Mysuru', 390),
+    ('R508', 'Kochi', 'Chennai', 670)
+;
+
+-- Insert values into SCHEDULE table
+INSERT INTO Schedule (ScheduleID, RouteID, BusID, BoardingDate, ArrivalDate)
+VALUES
+    ('S307', 'R456', 'B789', '2024-12-30 07:00:00+00', '2024-12-30 09:00:00+00'),
+    ('S308', 'R457', 'B122', '2024-12-30 05:30:00+00', '2024-12-30 08:30:00+00'),
+    ('S309', 'R458', 'B124', '2024-12-31 06:00:00+00', '2024-12-31 11:00:00+00'),
+    ('S310', 'R459', 'B125', '2024-12-31 07:00:00+00', '2024-12-31 10:00:00+00'),
+    ('S311', 'R460', 'B128', '2024-12-31 09:00:00+00', '2024-12-31 11:30:00+00'),
+    ('S312', 'R501', 'B127', '2024-12-31 10:00:00+00', '2024-12-31 12:30:00+00'),
+    ('S313', 'R502', 'B129', '2024-12-31 07:30:00+00', '2024-12-31 08:30:00+00'),
+    ('S314', 'R504', 'B130', '2024-12-31 06:00:00+00', '2024-12-31 07:00:00+00'),
+    ('S315', 'R505', 'B131', '2024-12-31 09:00:00+00', '2024-12-31 09:45:00+00'),
+    ('S316', 'R506', 'B122', '2024-12-31 05:30:00+00', '2024-12-31 09:00:00+00'),
+    ('S317', 'R507', 'B126', '2024-12-31 06:30:00+00', '2024-12-31 09:30:00+00'),
+    ('S318', 'R508', 'B127', '2024-12-31 07:00:00+00', '2024-12-31 12:00:00+00');
+;
+
+-- Insert values into PASSENGER table
+INSERT INTO Passenger (FirstName, MiddleName, LastName, ContactNumber, Gender, Email, Age)
+VALUES
+    ('Eren', 'M', 'Yeager', 9998887776, 'M', 'erenyeager@gmail.com', 21),
+    ('Sunil', 'Chhetri', 'Bhati', 4445556669, 'M', 'capsunilchhetri@gmail.com', 40),
+    ('Sraddha', 'S', 'Kapoor', 9876543210, 'F', 'actresssraddhakapoor@gmail.com', 37),
+    ('Harry', NULL, 'Potter', 1234567890, 'M', 'theboywholived123@gmail.com', 18),
+    ('Sirius', NULL, 'Black', 9087654321, 'M', 'animagus234@hotmail.com', 44),
+    ('Arun', 'V', 'Nair', 9876543212, 'M', 'arun.vnair@gmail.com', 35),
+    ('Ravi', 'M', 'Sharma', 9988776655, 'M', 'ravi.sharma@gmail.com', 28),
+    ('Maya', 'S', 'Kurian', 9222334455, 'F', 'maya.s.kurian@example.com', 24),
+    ('Anjali', NULL, 'Kumar', 9333445566, 'F', 'anjalikumar@outlook.com', 30),
+    ('Suresh', NULL, 'Nair', 9444556677, 'M', 'sureshnair@live.com', 40);
+
+-- Insert values into TICKET table
+INSERT INTO Ticket (PNRNO, ScheduleID, ContactNumber, SeatNumber, Fare)
+VALUES
+    (1001, 'S307', 9998887776, 15, 1185),
+    (1002, 'S308', 4445556669, 21, 569),
+    (1004, 'S309', 9876543210, 7, 899),
+    (2003, 'S310', 1234567890, 30, 680),
+    (2005, 'S311', 9087654321, 28, 590),
+    (4001, 'S312', 9876543212, 5, 300),
+    (4002, 'S313', 9988776655, 10, 250),
+    (4003, 'S314', 9222334455, 2, 280),
+    (4004, 'S315', 9333445566, 7, 320),
+    (4005, 'S316', 9444556677, 15, 290);
+
+-- Insert values into FARE DETAILS table
+INSERT INTO FareDetails (Fare, Discount)
+VALUES
+    (1185, 7),
+    (569, 10),
+    (899, 15),
+    (680, 20),
+    (590, 12),
+    (300, 10),
+    (250, 5),
+    (280, 15),
+    (320, 12),
+    (290, 8);
+
+-- Insert values into CREW table
+INSERT INTO Crew (CrewID, Role, LicenseNumber)
+VALUES
+    (2001, 'Conductor', 'C12345'),
+    (2001, 'Driver', 'C67890'),
+    (2002, 'Conductor', 'C23456'),
+    (2002, 'Driver', 'C78901'),
+    (2010, 'Conductor', 'C22100'),
+    (2010, 'Driver', 'C22101'),
+    (2101, 'Driver', 'C88888'),
+    (2101, 'Conductor', 'C99999'),
+    (2103, 'Driver', 'C12346'),
+    (2103, 'Conductor', 'C56789'),
+    (2105, 'Driver', 'C11223'),
+    (2105, 'Conductor', 'C44556');
+
+-- Insert values into CREW DETAILS table
+INSERT INTO CrewDetails (LicenseNumber, FirstName, MiddleName, LastName, ContactNumber)
+VALUES
+    ('C12345', 'Jean', 'K', 'Kristein', 8887779996),
+    ('C23456', 'Levi', 'A', 'Ackerman', 1112223334),
+    ('C67890', 'Roronoa', 'D', 'Zoro', 5556667778),
+    ('C78901', 'Armin', 'N', 'Alert', 7778889996),
+    ('C22100', 'Sherlock', 'H', 'Holmes', 2212212210),
+    ('C22101', 'John', 'G', 'Watson', 2212212211),
+    ('C88888', 'Vijay', 'K', 'Menon', 9440001122),
+    ('C99999', 'Lena', 'R', 'Thomas', 9441112233),
+    ('C12346', 'Kumar', 'S', 'Iyer', 9442223344),
+    ('C56789', 'Ramesh', 'V', 'Nair', 9443334455),
+    ('C11223', 'Biju', 'P', 'Kumar', 9444445566),
+    ('C44556', 'Rani', 'T', 'Nair', 9445556677);

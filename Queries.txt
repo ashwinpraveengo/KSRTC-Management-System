@@ -1,0 +1,56 @@
+-- Queries
+--1 groupby
+SELECT BusType, SUM(NumberOfSeats) AS TotalSeats
+        FROM Bus
+        GROUP BY BusType
+        HAVING SUM(NumberOfSeats) > 60;
+
+--2 orderby
+select FirstName, ContactNumber, Age from passenger order by FirstName;
+
+--3 join
+SELECT Ticket.PNRNO, Ticket.SeatNumber, Ticket.Fare, Bus.BusNumber, Bus.BusType, Passenger.FirstName, Passenger.LastName
+FROM Ticket
+JOIN Schedule ON Ticket.ScheduleID = Schedule.ScheduleID
+JOIN Bus ON Schedule.BusID = Bus.BusID
+JOIN Passenger ON Ticket.ContactNumber = Passenger.ContactNumber;
+
+--4 Boolean
+SELECT Bus.BusType, SUM(Bus.NumberOfSeats) AS TotalSeats
+FROM Bus
+GROUP BY Bus.BusType
+HAVING SUM(Bus.NumberOfSeats) > 60
+AND (Bus.BusType = 'Super Fast' OR Bus.BusType = 'Swift');
+
+--5 Arithmetic Operators
+SELECT Bus.BusType, SUM(Bus.NumberOfSeats) AS TotalSeats
+FROM Bus
+GROUP BY Bus.BusType
+HAVING SUM(Bus.NumberOfSeats) > 60
+AND (Bus.BusType = 'Super Fast' OR Bus.BusType = 'Swift');
+
+--6 String
+select RouteID, Source from Route where Source like 'K%';
+
+--7 to_char
+SELECT ScheduleID, 
+TO_CHAR(BoardingDate, 'YYYY-MM-DD HH24:MI:SS') 
+AS BoardingDate
+FROM Schedule;
+
+--8 between
+select pnrno, seatNumber, fare from ticket where fare between 500 and 1000;
+
+
+--9 set operation
+SELECT B.BusID FROM Bus B
+EXCEPT
+SELECT BusID FROM Schedule S;
+
+--10 exists
+SELECT BusID, BusType
+FROM Bus B
+WHERE EXISTS (SELECT 1
+FROM Schedule S
+WHERE S.BusID = B.BusID
+);
